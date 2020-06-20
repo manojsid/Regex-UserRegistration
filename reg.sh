@@ -1,33 +1,42 @@
-#!/bin/bash
-echo "Welcome to User Registration"
+#!/bin/bash 
+
 shopt -s extglob
-
-read -p "Enter the Valid firstname: " firstname
-read -p "Eter the valid Last name: " lastname
-read -p "Enter the valid Email ID: " email
-read -p "Enter the valid Mobile: " Mobile
-pat="^([A-Z]{1})+([a-z]{2,})$"
-pattren="^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,6}$"
-phone_pattren="^[0-9]{2}[[:space:]][0-9]{10}$"
-if [[ $firstname =~ $pat && $lastname =~ $pat ]]; then
-	echo "valid-  $firstname $lastname"
-		
-		if [[ $email =~ $Email_pattren ]]; then
-			echo "Your email is sucessfully valid"
-		else
-			echo "Please provide valid Email ID"	
-		fi
-			
-			if [[ $Mobile =~ $phone_pattren ]]; then
-				echo "Your Mobile number is verified"
-			else
-				echo "Please provide the Valid Mobile number"
-			fi
-
+echo "Welcome to User Registration "
+echo "-----------------------------"
+read -p "Enter valid First Name: " first
+read -p "Enter Second Name: " second
+name_pat="^[A-Z]{1}+[a-z]{2,}$"
+function firstnamaLastname(){
+if [[ $first =~ $name_pat && $second =~ $name_pat ]]
+then
+	echo "Valid Name";
 else
-	echo "Invalid-  $firstname $lastname"
-
+	echo "Invalid Name. Please Re-Enter!";
 fi
+}
+firstnamaLastname
+
+read -p "Enter your E-mail ID: " email
+email_pat="^[a-zA-Z0-9]+/@[a-zA-Z]+/.[a-z.]{2,8}$"
+function email_check(){
+	if [[ $email =~ $email_pat ]]; then
+		echo "Email is Valid." $email
+	else
+		echo "$email - Email is Invalid. Please try again."
+	fi
+}
+email_check
+
+read -p "Enter your Mobile Number with Country Code: " mobile
+mobile_pat="^[0-9]{2}+[[:space:][0-9]{10}$"
+function mobile_check(){
+	if [[ $mobile =~ $mobile_pat ]]; then
+		echo "$mobile is Valid."
+	else
+		echo "$mobile is Invalid. Please try again."
+	fi
+}
+mobile_check
 
 read -p "Enter your Password: " pass
 function password_check(){
@@ -43,15 +52,12 @@ function password_check(){
 				else
 					echo "Error: Atleast one special character is required. Please try again."
 				fi
-				echo "Valid"
 			else
 				echo "Error: Password should contain atleast one number. Please try again."
 			fi
-			echo "Valid"
 		else
 			echo "Error - At least one Upper case is required. Please try again"
 		fi
-		echo "Valid"
 	else
 		echo "Error - Password should be of atleast 8 characters. Please try again."
 	fi
