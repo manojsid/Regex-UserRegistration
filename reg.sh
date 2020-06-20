@@ -43,12 +43,15 @@ function password_check(){
 				else
 					echo "Error: Atleast one special character is required. Please try again."
 				fi
+				echo "Valid"
 			else
 				echo "Error: Password should contain atleast one number. Please try again."
 			fi
+			echo "Valid"
 		else
 			echo "Error - At least one Upper case is required. Please try again"
 		fi
+		echo "Valid"
 	else
 		echo "Error - Password should be of atleast 8 characters. Please try again."
 	fi
